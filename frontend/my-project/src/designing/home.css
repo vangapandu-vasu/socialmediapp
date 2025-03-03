@@ -1,0 +1,256 @@
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+  
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+  
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #actual {
+    display: flex;
+    padding: 1rem;
+    justify-content: space-evenly;
+    background-color: #242424;/* here is the change you have to make for theme thankyou */
+    
+    color: white;
+  }
+
+  /* .userandmedia{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  } */
+
+
+  .userandmedia{
+    /* border:#242424 solid; */
+    border-radius: 2%;
+    display: flex;
+    justify-content: space-between;        /* actually the user and media content is having way more space between them and 
+                                            i have to reduce it let it be for later bcoz gonna check if everything in the page fits
+                                            or goes out of it*/ 
+    flex-direction: column;
+    
+  }
+  .user{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+
+  }
+
+  .media{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+    
+  }
+
+  .user-item{
+    display: flex;
+    align-items: center;
+    gap:10px;
+    font-size: 13px;
+  }
+
+  .media-item{
+    display: flex;
+    align-items: center;
+    gap:10px;
+    font-size: 13px;
+  }
+
+  .user-item:hover{
+    /* color: #646cff; */
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.2s ease-in-out;
+  }
+
+  .media-item:hover {
+    /* color: #646cff; */
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.2s ease-in-out;
+  }
+  
+  #pic{
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+  }
+
+  .main{
+    display: flex;
+    flex-direction: column;
+    /* border:#242424 solid; */
+  }
+
+  .top{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+ #search{
+    position: relative;
+    display: flex;
+    align-items: center;
+ }
+
+ .search-icon{
+    position: absolute;
+    left: 10px; 
+    color: gray;
+ }
+
+ .search-input{
+    padding: 10px 10px 10px 35px; 
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 200px;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+ }
+
+ #quote-con {
+    display: flex;
+    flex-direction: column; 
+}
+
+.quote-input {
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 200px;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+}
+
+.main-item{
+    margin: 1rem;
+}
+
+@media (max-width: 600px) {
+    .top {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search-input, .quote-input {
+        width: 100%;
+    }
+}
+
+.mid{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left: 1rem;
+}
+
+.midmain-item:hover {
+    /* color: #646cff; */
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.2s ease-in-out;
+  }
+
+  .midmain-item{
+    display: flex;
+    align-items: center;
+    gap:10px;
+    font-size: 13px;
+    margin-left: 1rem;
+    margin-top: 1rem;
+  }
+
+  .bottom{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-evenly;
+  }
+
+  .botmain-item{
+    display: flex;
+    align-items: center;
+    gap:10px;
+    font-size: 13px;
+  }
+
+  .botmain-item:hover{
+    /* color: #646cff; */
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.2s ease-in-out;
+  }
+
+  .suggestedpro{
+    display: flex;
+    margin: 2rem;
+  }
+
+.img{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    margin: 2px;
+}
+
+#head{
+    margin: 2px;
+}
+
+#im{
+    border: solid black 1px;
+    border-radius: 12px;
+    margin: 12px;
+
+}
+  #im:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.2s ease-in-out;
+  }
+
+  /* box-shadow: 5px 5px 5px hsl(0, 0%, 10%); */
+.iconx{
+    margin-bottom: 1.5rem;
+    margin-left: 0.5rem;
+}
+
+#head{
+    margin-left: 0.5rem;
+}
+
+.category{
+    display: flex;
+    flex-direction: column;
+    margin: 3px;
+}
+
+.cate{
+    margin: 3px;
+    margin-bottom: 12px;
+}
+
+
+#catee{
+    display: flex;
+    gap: 4px;
+}
+
+#catee:hover{
+    /* color: #646cff; */
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.2s ease-in-out;
+}

@@ -1,0 +1,40 @@
+.slash {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
+    text-align: center;
+    background: linear-gradient(to right, #007bff, #6610f2); /* Smooth gradient background */
+    color: white; /* Text color */
+    font-family: 'Poppins', sans-serif; /* Stylish font */
+}
+
+.slash h5 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.slash p {
+    font-size: 1.1rem;
+    width: 60%;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #f8f9fa;
+}
+
+#bu {
+    width: 150px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+#bu:hover {
+    background-color: white;
+    color: #007bff;
+    transform: scale(1.05);
+}
