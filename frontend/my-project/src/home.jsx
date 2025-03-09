@@ -93,7 +93,9 @@ function  Home(){
                         <div className='suggmain-item'><Card/></div>
                     </div>
                     <div className='bottom'>
-                        <div className='botmain-item'><FontAwesomeIcon icon={faMessage} /><h5>chats</h5></div>
+                        <NavLink to={`/chats`} style={{ textDecoration: "none", color: "inherit" }}>
+                            <div className='botmain-item'><FontAwesomeIcon icon={faMessage} /><h5>chats</h5></div>
+                        </NavLink>
                         <div className='botmain-item'><FontAwesomeIcon icon={faRetweet} /><h5>tweets</h5></div>
                         <div className='botmain-item'><FontAwesomeIcon icon={faPlay} /><h5>videos</h5></div>
                         <div className='botmain-item'><FontAwesomeIcon icon={faUpload} /><h5>upload</h5></div>
