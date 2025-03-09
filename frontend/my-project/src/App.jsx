@@ -6,6 +6,7 @@ import Login from './login'
 import Slash from './slash'
 import Profilesetting from './profile'
 import Usersearch from './usersearch'
+import Chats from './chats';
 
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
           <Route path='/profile/:username' element={<Profilesetting/>}></Route>
           <Route path='/profile' element={<Profilesetting/>}></Route>
           <Route path='/usersearch' element={<Usersearch/>}></Route>
+          {/* <Route path='/' element={}></Route>  here it is post impentation path*/}
+          <Route path='/chats' element={<Chats/>}></Route>
         </Routes>
       </BrowserRouter>
     </>
