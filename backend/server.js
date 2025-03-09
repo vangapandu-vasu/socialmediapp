@@ -11,6 +11,13 @@ const {setuser,getuser}=require("./auth");
 const { verify } = require("jsonwebtoken");
 const path = require("path");
 const multer = require("multer");
+const {Server}=require("socket.io");
+const http=require("http");
+const server=http.createServer(app);
+const io=new Server(server,{
+    origin:"http://localhost:9000",
+    methods: ["GET","POST"]
+});
 
 
 app.use(express.json());
@@ -236,9 +243,9 @@ const poststore=multer.diskStorage({
     }
 });
 
-const post=multer({poststore:poststore});
+const postt=multer({poststore:poststore});
 
-app.server("/post",post.single("image"),async(req,res)=>{
+app.post("/post",postt.single("image"),async(req,res)=>{
     const {postname,caption}=req.body;
     const token=req.cookies.uid;
     const verify=getuser(token);
@@ -255,9 +262,27 @@ app.server("/post",post.single("image"),async(req,res)=>{
     }
     
     await postimp.save()
-})
+});
 
 
-app.listen(port,(req,res)=>{
+io.on("connection",(socket)=>{
+    console.log("user connected",socket.id)
+    
+    socket.on("message",(message)=>{
+        console.log("some user sended a text:",message);
+        io.emit("message",message);
+    });
+    
+
+    socket.on("disconnect",()=>{
+        console.log("that user disconnected")
+    });
+
+
+});
+
+
+
+server.listen(port,(req,res)=>{
     console.log("server working perfectly fine");
 })
