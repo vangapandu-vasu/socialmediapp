@@ -79,7 +79,7 @@ app.post("/login",async(req,res)=>{
         res.cookie("uid",token,
             {
                 httpOnly: true, // Prevents JavaScript from accessing it
-                secure: false, // Set true in production (HTTPS required)
+                secure: true, // Set true in production (HTTPS required)
                 sameSite: "lax", // Allows sending cookies on same-site requests
             }
         );
@@ -161,7 +161,7 @@ app.get("/search",async(req,res)=>{
 
 app.get("/currentuser",async(req,res)=>{
     const token=req.cookies.uid;
-    const verifiy=getuser(token)
+    const verify=getuser(token)
     const user=await pp.findOne({email:verify.email});
     if(!user){
         return res.json("no user found")
@@ -264,6 +264,14 @@ app.post("/post",postt.single("image"),async(req,res)=>{
     await postimp.save()
 });
 
+app.get("/usernamef",async(req,res)=>{
+    const token = req.cookies.uid;
+    console.log(token);
+    const verify = getuser(token);
+    console.log(verify)
+    const user = await pp.findOne({email:verify.email});
+    return res.status(200).json(user);
+})
 
 io.on("connection",(socket)=>{
     console.log("user connected",socket.id)
