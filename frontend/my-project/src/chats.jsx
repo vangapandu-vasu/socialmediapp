@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import {io} from "socket.io-client";
 
@@ -7,8 +8,19 @@ const socket=io("http://localhost:9000",{
 
 function Chats(){
 
+    const [user, setUser] = useState("");
     const [text,setText] = useState("");
     const [messages,setMessages] = useState([]);
+
+    useEffect(()=>{
+        axios.get("http://localhost:9000/usernamef",{withCredentials:true})
+        .then(Response=>{
+            setUser(Response.data.Name);
+        })
+        .catch(err=>{
+            console.log("error in fetching current user id ",err);
+        })
+    },[]);
 
 
     let handletext=(e)=>{
@@ -37,7 +49,7 @@ function Chats(){
             </button>
             <div>
                 {messages.map((msg,index)=>(
-                    <p key={index}>user:{msg}</p>
+                    <p key={index}>{user}:{msg}</p>
                 ))}
             </div>
         </>
