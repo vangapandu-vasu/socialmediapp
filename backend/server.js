@@ -266,12 +266,30 @@ app.post("/post",postt.single("image"),async(req,res)=>{
 
 app.get("/usernamef",async(req,res)=>{
     const token = req.cookies.uid;
-    console.log(token);
     const verify = getuser(token);
-    console.log(verify)
     const user = await pp.findOne({email:verify.email});
     return res.status(200).json(user);
-})
+});
+
+    app.post("/followingusers",async(req,res)=>{
+        const {ids}=req.body
+        console.log(ids);
+        console.log("till here its ids");
+        if(!ids){
+            return res.status(404).json("couldn't find the ids")
+        }
+        const users= await pp.find({following:{$in:ids}})
+        console.log(users);
+        console.log("tille here its users")
+        if(!users||users.length===''){
+            return res.status(404).json("couldn't find the users or 0");
+        }
+        const usermap=users.map(user=>({id:user.id,name:user.Name}));
+        console.log(usermap)
+        console.log("tille here usermap");
+
+        return res.status(200).json(usermap);
+    });
 
 io.on("connection",(socket)=>{
     console.log("user connected",socket.id)
