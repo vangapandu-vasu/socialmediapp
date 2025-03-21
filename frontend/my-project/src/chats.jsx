@@ -11,15 +11,28 @@ function Chats(){
     const [user, setUser] = useState("");
     const [text,setText] = useState("");
     const [messages,setMessages] = useState([]);
+    const [following, setFollowing] = useState([]);
+    const [followingusers, setFollowingusers] = useState([]);
 
     useEffect(()=>{
         axios.get("http://localhost:9000/usernamef",{withCredentials:true})
         .then(Response=>{
             setUser(Response.data.Name);
+            setFollowing(Response.data.following);
+            console.log(following);
+            axios.post("http://localhost:9000/followingusers",{ids:Response.data.following})
+            .then(Response=>{
+                setFollowingusers(Response.data);
+                console.log(Response.data);
+                console.log("in frontend part from backend");
+            })
+            .catch(err=>{
+                console.log("error while fetching followingusers", err)
+            })
         })
         .catch(err=>{
             console.log("error in fetching current user id ",err);
-        })
+        });
     },[]);
 
 
@@ -44,14 +57,21 @@ function Chats(){
     return(
         <>
             <h1>on chats</h1>
-            <input className="no" id="noo" placeholder="text" value={text} onChange={(e)=>{setText(e.target.value)}}></input>
-            <button onClick={(e)=>handletext(e)} className="btttttt">send
-            </button>
-            <div>
+            <div className="userpart">
+                    {
+                        followingusers.map(({id, name})=>(
+                            <p key={id}>{name}</p>
+                        ))
+                    }
+            </div>
+            <div className="chatpart">
                 {messages.map((msg,index)=>(
                     <p key={index}>{user}:{msg}</p>
                 ))}
             </div>
+            <input className="no" id="noo" placeholder="text" value={text} onChange={(e)=>{setText(e.target.value)}}></input>
+            <button onClick={(e)=>handletext(e)} className="btttttt">send
+            </button>
         </>
     )
 }

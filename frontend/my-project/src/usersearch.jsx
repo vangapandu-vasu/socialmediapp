@@ -18,7 +18,7 @@ function Usersearch(){
     
 
     useEffect(()=>{
-        axios.get("http://localhost:9000/currentuser")
+        axios.get("http://localhost:9000/currentuser",{withCredentials:true})
         .then(Response=>{
             setCurrentuser(Response.data)
             console.log(Response.data);
