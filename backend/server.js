@@ -268,6 +268,7 @@ app.get("/usernamef",async(req,res)=>{
     const token = req.cookies.uid;
     const verify = getuser(token);
     const user = await pp.findOne({email:verify.email});
+    console.log("user details in usernamef", user);
     return res.status(200).json(user);
 });
 
@@ -278,7 +279,7 @@ app.get("/usernamef",async(req,res)=>{
         if(!ids){
             return res.status(404).json("couldn't find the ids")
         }
-        const users= await pp.find({following:{$in:ids}})
+        const users= await pp.find({_id:{$in:ids}})
         console.log(users);
         console.log("tille here its users")
         if(!users||users.length===''){
