@@ -20,7 +20,14 @@ function Chats(){
             setUser(Response.data.Name);
             setFollowing(Response.data.following);
             console.log(following);
-            axios.post("http://localhost:9000/followingusers",{ids:Response.data.following})
+        })
+        .catch(err=>{
+            console.log("error in fetching current user id ",err);
+        });
+    },[]);
+    useEffect(()=>{
+        if(following.length>0){
+            axios.post("http://localhost:9000/followingusers",{ids:following})
             .then(Response=>{
                 setFollowingusers(Response.data);
                 console.log(Response.data);
@@ -29,11 +36,9 @@ function Chats(){
             .catch(err=>{
                 console.log("error while fetching followingusers", err)
             })
-        })
-        .catch(err=>{
-            console.log("error in fetching current user id ",err);
-        });
-    },[]);
+        }
+        
+    },[following])
 
 
     let handletext=(e)=>{
