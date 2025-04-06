@@ -78,6 +78,7 @@ import { useEffect, useState } from "react";
 import {   useParams } from "react-router";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./designing/profilesetting.css"
 
 function Profilesetting() {
   const { username } = useParams("");
@@ -146,80 +147,86 @@ function Profilesetting() {
   };
 
   return (
-    <div className="container mt-5">
-                 {/* email and password and fullname belongs to main database if changing here will complicate it 
+    <div className="container mt-5 fade-in">
+      {/* email and password and fullname belongs to main database if changing here will complicate it 
 //             like the profile page renders using fname if i change it here i have to change it on main database  
 //             so it will unneccesary complication 
 //         */}
-        <h1>username:{username}</h1>
-        <h1>email:{email}</h1>
-        <h1>password:{password}</h1>
-      <div className="card shadow p-4">
-        <h2 className="text-center mb-4">Profile Settings</h2>
-        <form onSubmit={(e)=>handleSubmit(e)}>
-          {/* Full Name */}
+      {/* User Info Display */}
+      <div className="card bg-dark text-light shadow-sm mb-4 p-3 border-secondary fade-in">
+        <h5 className="text-secondary mb-3">User Details</h5>
+        <p className="mb-1">
+          <strong>Username:</strong> {username}
+        </p>
+        <p className="mb-1">
+          <strong>Email:</strong> {email}
+        </p>
+        <p className="mb-1">
+          <strong>Password:</strong> {password}
+        </p>
+      </div>
+  
+      {/* Profile Form */}
+      <div className="card bg-dark text-light shadow p-4 border-secondary fade-in">
+        <h2 className="text-center text-light mb-4">Profile Settings</h2>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <div className="mb-3">
             <label className="form-label">Full Name</label>
             <input
               type="text"
-              className="form-control"
+              className="form-control bg-dark text-light border-secondary"
               value={name}
               required
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-
-          {/* Bio */}
+  
           <div className="mb-3">
             <label className="form-label">Bio</label>
             <textarea
-              className="form-control"
+              className="form-control bg-dark text-light border-secondary"
               rows="3"
               value={bio}
               required
               onChange={(e) => setBio(e.target.value)}
             ></textarea>
           </div>
-
-          {/* Quote */}
+  
           <div className="mb-3">
             <label className="form-label">Favorite Quote</label>
             <input
               type="text"
-              className="form-control"
+              className="form-control bg-dark text-light border-secondary"
               value={quote}
               required
               onChange={(e) => setQuote(e.target.value)}
             />
           </div>
-
-          {/* Profile Picture */}
+  
           <div className="mb-3">
-            <label className="form-label">Profile Picture URL</label>
+            <label className="form-label">Upload New Profile Picture</label>
             <input
               type="file"
-              className="form-control"
-              // value={profilePicture}
+              className="form-control bg-dark text-light border-secondary"
               onChange={(e) => handleimage(e)}
             />
           </div>
-
-          {/* Display preview Profile Picture */}
+  
           {profilePicture && (
             <div className="text-center mb-3">
               <img
                 src={`http://localhost:9000${profilePicture}`}
                 alt="Profile"
-                className="rounded-circle"
-                width="100"
-                height="100"
+                className="rounded-circle border border-light"
+                width="120"
+                height="120"
+                style={{ objectFit: "cover" }}
               />
             </div>
           )}
-
-          {/* Submit Button */}
+  
           <div className="text-center">
-            <button type="submit" className="btn btn-primary w-50">
+            <button type="submit" className="btn btn-outline-light px-5">
               Update Profile
             </button>
           </div>
@@ -227,6 +234,9 @@ function Profilesetting() {
       </div>
     </div>
   );
+  
 }
 
 export default Profilesetting;
+
+

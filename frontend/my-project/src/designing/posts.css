@@ -1,0 +1,61 @@
+
+.fade-in {
+    animation: fadeIn 0.7s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .form-control:focus {
+    border-color: #0dcaf0;
+    box-shadow: 0 0 6px rgba(13, 202, 240, 0.6);
+    background-color: #212529;
+    color: white;
+  }
+  
+  .card-post {
+    background-color: #121212;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(13, 202, 240, 0.1);
+  }
+  
+  input[type="file"]::file-selector-button {
+    background-color: #0dcaf0;
+    color: black;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    margin-right: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  input[type="file"]::file-selector-button:hover {
+    background-color: #0bb2d4;
+    cursor: pointer;
+  }
+  
+  button.btn-submit {
+    background-color: transparent;
+    color: #0dcaf0;
+    border: 2px solid #0dcaf0;
+    padding: 0.6rem 2rem;
+    border-radius: 0.8rem;
+    transition: all 0.3s ease;
+  }
+  
+  button.btn-submit:hover {
+    background-color: #0dcaf0;
+    color: black;
+    transform: scale(1.05);
+  }
+  

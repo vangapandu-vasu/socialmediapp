@@ -1,0 +1,75 @@
+
+.usersearch-container {
+    min-height: 100vh;
+    background-color: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    color: #fff;
+    padding: 2rem;
+  }
+  
+  .usersearch-card {
+    background-color: #1e1e1e;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 255, 135, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  
+  .usersearch-heading {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .usersearch-name {
+    color: #00e676;
+  }
+  
+  .usersearch-img {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    margin: 1rem 0;
+    border: 2px solid #00e676;
+  }
+  
+  .usersearch-text {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+  
+  .usersearch-button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .usersearch-button.follow {
+    background-color: #00e676;
+  }
+  
+  .usersearch-button.unfollow {
+    background-color: #ff1744;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {io} from "socket.io-client";
+import "./designing/chats.css"
 
 const socket=io("http://localhost:9000",{
     transports:["websocket","polling"]
@@ -59,26 +60,41 @@ function Chats(){
     
 
 
-    return(
+    return (
         <>
-            <h1>on chats</h1>
+          <h1 style={{ color: "white", textAlign: "center", padding: "1rem", backgroundColor: "#121212" }}>
+            On Chats
+          </h1>
+      
+          <div className="chat-container">
+            {/* User List */}
             <div className="userpart">
-                    {
-                        followingusers.map(({id, name})=>(
-                            <p key={id}>{name}</p>
-                        ))
-                    }
+              {followingusers.map(({ id, name }) => (
+                <p key={id}>{name}</p>
+              ))}
             </div>
+      
+            {/* Chat Window */}
             <div className="chatpart">
-                {messages.map((msg,index)=>(
-                    <p key={index}>{user}:{msg}</p>
-                ))}
+              {messages.map((msg, index) => (
+                <p key={index}>{user}: {msg}</p>
+              ))}
+      
+              {/* Input Area */}
+              <div className="input-area">
+                <input
+                  className="no"
+                  id="noo"
+                  placeholder="Type a message..."
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                />
+                <button onClick={(e) => handletext(e)} className="btttttt">Send</button>
+              </div>
             </div>
-            <input className="no" id="noo" placeholder="text" value={text} onChange={(e)=>{setText(e.target.value)}}></input>
-            <button onClick={(e)=>handletext(e)} className="btttttt">send
-            </button>
+          </div>
         </>
-    )
+      );
 }
 
 export default Chats;

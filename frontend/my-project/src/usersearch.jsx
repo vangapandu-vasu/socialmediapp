@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect,useState } from "react";
 import { useLocation } from "react-router";
+import "./designing/usersearch.css"
 
 
 function Usersearch(){
@@ -63,19 +64,31 @@ function Usersearch(){
         }
     }
     
-    return(
-        <div>
-            <h2>name:{user.Name}</h2>
-            <img src={`http://localhost:9000${user.profilePicture}`} alt="profilepic" height="100" width="100" ></img>
-            <p>Bio:{user.bio}</p>
-            <p>quote:{user.quote}</p>
-            <p>following:{user.following.length}</p>
-            <p>followers:{user.followers.length}</p>
-            <button onClick={isfollowing?unfollow:follow} >
-                <p>{isfollowing?"unfollow":"follow"}</p>
-            </button>       
+    return (
+        <div className="usersearch-container">
+          <div className="usersearch-card">
+            <h2 className="usersearch-heading">
+              Name: <span className="usersearch-name">{user.Name}</span>
+            </h2>
+            <img
+              src={`http://localhost:9000${user.profilePicture}`}
+              alt="profilepic"
+              className="usersearch-img"
+            />
+            <p className="usersearch-text"><strong>Bio:</strong> {user.bio}</p>
+            <p className="usersearch-text"><strong>Quote:</strong> “{user.quote}”</p>
+            <p className="usersearch-text"><strong>Following:</strong> {user.following.length}</p>
+            <p className="usersearch-text"><strong>Followers:</strong> {user.followers.length}</p>
+      
+            <button
+              onClick={isfollowing ? unfollow : follow}
+              className={`usersearch-button ${isfollowing ? "unfollow" : "follow"}`}
+            >
+              {isfollowing ? "Unfollow" : "Follow"}
+            </button>
+          </div>
         </div>
-    )
+      );
 }
 
 
