@@ -49,6 +49,11 @@ function Chats(){
             setText("");
         }
     }
+
+    let handlename=(e)=>{
+      e.preventDefault();
+      //here implement the code for retrving the data from database
+    }
     
     useEffect(() => {
         socket.on("message",(msg)=>{
@@ -70,7 +75,9 @@ function Chats(){
             {/* User List */}
             <div className="userpart">
               {followingusers.map(({ id, name }) => (
-                <p key={id}>{name}</p>
+                <p key={id}>
+                  <button onClick={(e)=>handlename(e)}>{name}</button>
+                  </p>
               ))}
             </div>
       
