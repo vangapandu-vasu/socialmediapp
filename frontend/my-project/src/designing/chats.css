@@ -60,25 +60,31 @@
   
   #noo {
     flex: 1;
-    padding: 12px;
-    border-radius: 25px;
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 30px;
     border: none;
     background-color: #2a2a2a;
     color: white;
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin-right: 0.5rem;
     outline: none;
+    min-width: 0;
   }
   
   .btttttt {
-    padding: 12px 20px;
-    border-radius: 25px;
+    height: 36px;
+    width: 80px; /* Fixed small width */
+    border-radius: 20px;
     border: none;
     background-color: #00e676;
     color: black;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 0.85rem;
     cursor: pointer;
     transition: background-color 0.2s;
+    align-self: center;
+    flex-shrink: 0; 
   }
   
   .btttttt:hover {
