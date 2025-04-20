@@ -18,6 +18,7 @@ const io=new Server(server,{
     origin:"http://localhost:9000",
     methods: ["GET","POST"]
 });
+const ch=require("./databases/chatdatabase");
 
 
 app.use(express.json());
@@ -295,9 +296,19 @@ app.get("/usernamef",async(req,res)=>{
 io.on("connection",(socket)=>{
     console.log("user connected",socket.id)
     
-    socket.on("message",(message)=>{
-        console.log("some user sended a text:",message);
-        io.emit("message",message);
+    socket.on("message",async (data)=>{
+        console.log("some user sended a text:",data.content);
+
+        const chats = new ch({sender:data.sender,
+            receiver: data.receiver, 
+            content: data.content});
+ 
+        chats.save();
+
+        io.emit("message",{sender:data.sender,
+            receiver: data.receiver, 
+            content: data.content});
+        
     });
     
 
@@ -306,6 +317,22 @@ io.on("connection",(socket)=>{
     });
 
 
+});
+
+
+app.post("/fetchchat",async(req,res)=>{
+    //query for chat retriving
+    const {user1, user2} = req.body;
+    const main = await ch.find(
+        {
+            $or:[
+                {sender:user1, receiver:user2},
+                {sender:user2, receiver:user1}
+            ]
+
+    }).sort({timestamps : 1});
+
+    return res.status(200).json(main);
 });
 
 
