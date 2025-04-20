@@ -14,6 +14,7 @@ function Chats(){
     const [messages,setMessages] = useState([]);
     const [following, setFollowing] = useState([]);
     const [followingusers, setFollowingusers] = useState([]);
+    const [selecteduserId, setSelecteduserId] = useState("");
 
     useEffect(()=>{
         axios.get("http://localhost:9000/usernamef",{withCredentials:true})
@@ -44,14 +45,27 @@ function Chats(){
 
     let handletext=(e)=>{
         e.preventDefault();
-        if(text.trim()){
-            socket.emit("message",text);
+        if(text.trim() && selecteduserId){
+            socket.emit("message",{
+              sender:user,
+              receiver:selecteduserId,
+              content:text,
+            }
+            );
             setText("");
         }
     }
 
-    let handlename=(e)=>{
-      e.preventDefault();
+    let fetchchatwithuser=async(id)=>{
+  
+      axios.post("http://localhost:9000/fetchchat",{user1:user,user2:id},{withCredentials:true})
+      .then(Response=>{
+        console.log(Response.content);
+        setMessages(Response.data)
+      })
+      .catch(err=>{
+        console.log("error in retriving chats",err);
+      });
       //here implement the code for retrving the data from database
     }
     
@@ -76,16 +90,25 @@ function Chats(){
             <div className="userpart">
               {followingusers.map(({ id, name }) => (
                 <p key={id}>
-                  <button onClick={(e)=>handlename(e)}>{name}</button>
+                  <button onClick={() => {setSelecteduserId(id);
+                     fetchchatwithuser(id);}
+                     }>{name}</button>
                   </p>
               ))}
             </div>
       
             {/* Chat Window */}
             <div className="chatpart">
-              {messages.map((msg, index) => (
-                <p key={index}>{user}: {msg}</p>
-              ))}
+              {messages.map((msg, index) =>{ 
+                return(
+                  console.log(msg),
+                  console.log(msg.sender),
+                  console.log(msg.content),
+
+                  <p key={index}>{msg.sender}: {msg.content}</p>
+                )
+                
+              })}
       
               {/* Input Area */}
               <div className="input-area">
