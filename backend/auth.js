@@ -1,5 +1,6 @@
 const jwt=require("jsonwebtoken");
-const skey="imonly@6969";
+require("dotenv").config();
+const skey=dotenv.process.passkey;
 
 
 

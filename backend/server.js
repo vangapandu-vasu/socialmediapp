@@ -2,6 +2,7 @@ const express=require("express");
 const mongoose=require("mongoose");
 const cors=require("cors");
 const app=express();
+require("dotenv").config();
 const port=9000;
 const act=require("./databases/database");
 const pp=require("./databases/profiledatabases");
@@ -32,11 +33,11 @@ app.use("/uploads", express.static("uploads"));
 
 
 
-const url="mongodb+srv://vasuadmin:vasun123@cluster0.b3vg5.mongodb.net/socialmediapp?retryWrites=true&w=majority";;
 
 
 
-mongoose.connect(url)
+
+mongoose.connect(dotenv.process.url)
   .then(() => console.log("✅ MongoDB connected successfully"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
   
