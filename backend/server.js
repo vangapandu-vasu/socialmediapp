@@ -341,3 +341,5 @@ app.post("/fetchchat",async(req,res)=>{
 server.listen(port,(req,res)=>{
     console.log("server working perfectly fine");
 });
+
+//down to the last i far i have seen everthing looks fine look up for multer post impementation and setups sockets
